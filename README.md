@@ -10,7 +10,7 @@
 7. [JSON API](#json_api)
 8. [JSON Form API](#jsonform_api)
 9. [Examples](#examples)  
-9.1 [Input form](#example_input)  
+9.1 [Chat](#example_chat)  
 9.2 [JSON form](#example_jsonform)
 10. [AI integration examples](#ai_examples)
 
@@ -245,10 +245,10 @@ Renders a native multi-field form described by a JSON schema and returns the sub
 [Example file json_form.lua](/samples/jsonform/json_form.lua)
 
 ## Examples <a name="examples"></a>
-## Input form example <a name="example_input"></a>
-![Alt text](/screenshots/luatest_inputform.gif?raw=true "Input form")
+## AI chat example <a name="example_chat"></a>
+![Alt text](/screenshots/form.gif?raw=true "AI chat")
 ## JSON form example <a name="example_jsonform"></a>
-![Alt text](/screenshots/luatest_jsonform.gif?raw=true "JSON form")
+![Alt text](/screenshots/form.gif?raw=true "JSON form")
 
 ## AI integration examples <a name="ai_examples"></a>
 These samples don't add new API surface — they show how to call third-party AI chat completion APIs using the [HTTP API](#http_api) above.
