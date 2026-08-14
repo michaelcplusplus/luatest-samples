@@ -10,7 +10,7 @@
 7. [JSON API](#json_api)
 8. [JSON Form API](#jsonform_api)
 9. [Examples](#examples)  
-9.1 [Chat](#example_chat)  
+9.1 [AI Chat](#example_chat)  
 9.2 [JSON form](#example_jsonform)
 10. [AI integration examples](#ai_examples)
 
@@ -246,7 +246,7 @@ Renders a native multi-field form described by a JSON schema and returns the sub
 
 ## Examples <a name="examples"></a>
 ## AI chat example <a name="example_chat"></a>
-![Alt text](/screenshots/form.gif?raw=true "AI chat")
+![Alt text](/screenshots/chat.gif?raw=true "AI chat")
 ## JSON form example <a name="example_jsonform"></a>
 ![Alt text](/screenshots/form.gif?raw=true "JSON form")
 
