@@ -12,7 +12,10 @@
 9. [Examples](#examples)  
 9.1 [AI Chat](#example_chat)  
 9.2 [JSON form](#example_jsonform)
-10. [AI integration examples](#ai_examples)
+10. [AI integration examples](#ai_examples)  
+10.1 [OpenAI](#ai_openai)  
+10.2 [Google Gemini](#ai_gemini)  
+10.3 [DeepSeek](#ai_deepseek)
 
 ## Introduction <a name="introduction"></a>
 Sample files for the Android app LuaTest, see Google playstore https://play.google.com/store/apps/details?id=de.mlauer.luatest  
@@ -248,7 +251,34 @@ Renders a native multi-field form described by a JSON schema and returns the sub
 ## AI integration examples <a name="ai_examples"></a>
 These samples don't add new API surface — they show how to call third-party AI chat completion APIs using the [HTTP API](#http_api) above.
 
+### OpenAI <a name="ai_openai"></a>
+* Endpoint: `POST https://api.openai.com/v1/chat/completions`, model `gpt-3.5-turbo`
+* Auth: `Authorization: Bearer <key>` header; key from `app.openAiApiKey()` (Preferences)
+* Request body: `{ model, messages = {{role, content}, ...} }`; response text at `choices[1].message.content`
+
 [Example file openai_prompt.lua](/samples/openai/openai_prompt.lua)  
+Single-shot completion — summarizes a fixed piece of text.
+
 [Example file openai_chatbot.lua](/samples/openai/openai_chatbot.lua)  
+Multi-turn "OrderBot" demo: takes input via `app.inputForm`, keeps the full message history, and ends by asking the model to emit a JSON summary of the order.
+
+### Google Gemini <a name="ai_gemini"></a>
+* Endpoint: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=<apiKey>` (key passed as a query parameter, not a header)
+* Auth: `app.palmApiKey()` (Preferences); the chatbot sample checks for an empty key and errors out
+* Request body: `{ contents = {{role, parts = {{text}}}, ...} }` — note the shape differs from OpenAI's `messages`, and roles are `"user"`/`"model"` instead of `"user"`/`"assistant"`; response text at `candidates[1].content.parts[1].text` (handle `finishReason` when no content is returned)
+
 [Example file googlegemini_prompt.lua](/samples/googlegemini/googlegemini_prompt.lua)  
-[Example file googlegemini_chatbot.lua](/samples/googlegemini/googlegemini_chatbot.lua)
+Asks a single question via `app.inputForm`; also demonstrates handling the `finishReason`-only response case.
+
+[Example file googlegemini_chatbot.lua](/samples/googlegemini/googlegemini_chatbot.lua)  
+Multi-turn loop using `app.inplaceForm` for input and `app.printMarkdown` to render replies.
+
+### DeepSeek <a name="ai_deepseek"></a>
+* Endpoint: `POST https://api.deepseek.com/chat/completions`, model `deepseek-chat`, OpenAI-compatible request shape (`messages`), with `stream = false` set explicitly
+* Auth: no `app.*ApiKey()` helper exists for DeepSeek yet — both samples hardcode a `"sk-..."` placeholder that must be replaced with a real key
+
+[Example file deepseek_input.lua](/samples/deepseek/deepseek_input.lua)  
+Single-shot prompt via `app.inplaceForm`.
+
+[Example file deepseek_chatbot.lua](/samples/deepseek/deepseek_chatbot.lua)  
+Same "OrderBot" demo as OpenAI's, ported to DeepSeek's endpoint.
