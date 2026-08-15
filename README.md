@@ -18,11 +18,6 @@
 Sample files for the Android app LuaTest, see Google playstore https://play.google.com/store/apps/details?id=de.mlauer.luatest  
 The app runs Lua scripts on-device, with a native API for HTTP, MQTT, SQLite, JSON, forms and more.
 
-![Alt text](/screenshots/luatest_mqtt.gif?raw=true "MQTT test script")
-
-If you find this project useful, consider buying me a coffee:  
-[![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoffee.com/michaellauer)
-
 ## App API <a name="app_api"></a>
 * app.toast()
 * app.speak()
